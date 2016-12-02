@@ -1,0 +1,7 @@
+MATCH (a:artists)-[id:artist_id]-(t:tracks)-[id:track_id]-(st:showtracks)-[show_id:id]-(s:shows) WHERE t.title CONTAINS 'flower' AND NOT (s.show_name CONTAINS 'bugcast' AND s.url CONTAINS 'bugcast.org') RETURN t, a;
+MATCH (a:artists)-(t:tracks)-(st:showtracks)-(s:shows) WHERE NOT s.show_name CONTAINS 'bugcast' RETURN t, a;
+MATCH (a:artists)-(t:tracks)-(st:showtracks)-(s:shows) WHERE NOT s.show_name CONTAINS 'bugcast' RETURN t.id, t.title, a;
+MATCH (a:artists)-(t:tracks)-(st:showtracks)-(s:shows) WHERE NOT s.show_name CONTAINS 'bugcast' RETURN t, a.name;
+MATCH (artists)-(t:tracks)-(showtracks)-(s:shows) WHERE NOT s.show_name CONTAINS 'bugcast' RETURN t.id, t.title, artists;
+MATCH (artists)-[track_id:]-(t:tracks)-[:track_id]-(showtracks)-(s:shows) WHERE NOT s.show_name CONTAINS 'bugcast' RETURN t.id, t.title, artists;
+MATCH (t:tracks)-[id:track_id]-(v:votes) WHERE t.id IN [1, 2, 3, 4] RETURN v;
